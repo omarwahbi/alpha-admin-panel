@@ -1,6 +1,8 @@
-import { db } from "../db.js";
+import { db } from "../db-old.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 const secret = process.env.MY_SECRET;
 
 // create a user manually

@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 import express from "express";
-import { db } from "./db.js";
 import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 import testimonialsRoutes from "./routes/testimonials.js";

@@ -82,25 +82,29 @@ export const addProject = (req, res) => {
           const imgUrls = req.body.img_URL; // Array of img_URL values from front-end
 
           // Loop through the imgUrls array and execute the second query for each value
-          for (let i = 0; i < imgUrls.length; i++) {
-            db.query(q2, [projectId, imgUrls[i]], (err, data) => {
-              if (err) {
-                db.rollback(() => {
-                  throw err;
-                });
-              }
-              if (i === imgUrls.length - 1) {
-                // If it's the last iteration, commit the transaction
-                db.commit((err) => {
-                  if (err) {
-                    db.rollback(() => {
-                      throw err;
-                    });
-                  }
-                  return res.status(200).json(data);
-                });
-              }
-            });
+          if (imgUrls.length == 0) {
+            return res.status(200).json(data);
+          } else {
+            for (let i = 0; i < imgUrls.length; i++) {
+              db.query(q2, [projectId, imgUrls[i]], (err, data) => {
+                if (err) {
+                  db.rollback(() => {
+                    throw err;
+                  });
+                }
+                if (i === imgUrls.length - 1) {
+                  // If it's the last iteration, commit the transaction
+                  db.commit((err) => {
+                    if (err) {
+                      db.rollback(() => {
+                        throw err;
+                      });
+                    }
+                    return res.status(200).json(data);
+                  });
+                }
+              });
+            }
           }
         }
       );
