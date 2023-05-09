@@ -9,6 +9,7 @@ import categoriesRoutes from "./routes/categories.js";
 import logosRoutes from "./routes/logos.js";
 import contactUs from "./routes/contactUs.js";
 
+const cors = require("cors");
 dotenv.config();
 const app = express();
 app.use(cors());
