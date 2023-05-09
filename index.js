@@ -20,7 +20,8 @@ app.use("/api/projects", projectsRoutes);
 app.use("/api/categories", categoriesRoutes);
 app.use("/api/logos", logosRoutes);
 app.use("/api/contactUs", contactUs);
+app.use(cors());
 
-app.listen(8800, () => {
-  console.log("The server is listening!!!");
+app.listen(80, function () {
+  console.log("CORS-enabled web server listening on port 80");
 });
