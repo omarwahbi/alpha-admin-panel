@@ -22,6 +22,6 @@ app.use("/api/categories", categoriesRoutes);
 app.use("/api/logos", logosRoutes);
 app.use("/api/contactUs", contactUs);
 
-app.listen(80, function () {
+app.listen(8800, function () {
   console.log("CORS-enabled web server listening on port 80");
 });
