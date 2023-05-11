@@ -44,6 +44,8 @@ export const login = (req, res) => {
             .cookie("access_token", token, {
               httpOnly: true,
               secure: true,
+              domain: "alpha-admin-panel-front.vercel.app",
+              sameSite: "none",
             })
             .status(200)
             .json(others);
