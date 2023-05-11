@@ -19,7 +19,7 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: "*",
-    preflightContinue: false,
+    preflightContinue: true,
     optionsSuccessStatus: 204,
   })
 );
