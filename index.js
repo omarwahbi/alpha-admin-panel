@@ -26,7 +26,13 @@ app.use(
 );
 
 app.use(express.json());
-app.use(cookieParser({ cookieDomain: "alpha-admin-panel-front.vercel.app" }));
+app.use(
+  cookieParser({
+    sameSite: "none",
+    secure: true,
+    domain: "alpha-admin-panel-front.vercel.app",
+  })
+);
 app.use("/api/auth", authRoutes);
 app.use("/api/testimonials", testimonialsRoutes);
 app.use("/api/aboutUs", aboutUsRoutes);
