@@ -30,7 +30,6 @@ app.use(
   cookieParser({
     sameSite: "none",
     secure: true,
-    domain: "alpha-admin-panel-front.vercel.app",
   })
 );
 app.use("/api/auth", authRoutes);
