@@ -30,6 +30,7 @@ app.use(
   cookieParser({
     sameSite: "none",
     secure: true,
+    httpOnly: true,
   })
 );
 app.use(function (req, res, next) {

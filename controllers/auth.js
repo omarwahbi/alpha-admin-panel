@@ -42,7 +42,7 @@ export const login = (req, res) => {
           const { password_hash, ...others } = data[0];
           res
             .cookie("access_token", token, {
-              httpOnly: false,
+              httpOnly: true,
               secure: true,
               sameSite: "none",
               domain: "https://alpha-admin-panel.vercel.app",
