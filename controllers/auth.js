@@ -42,7 +42,7 @@ export const login = (req, res) => {
           const { password_hash, ...others } = data[0];
           res
             .cookie("access_token", token, {
-              httpOnly: true,
+              httpOnly: false,
               secure: true,
               sameSite: "none",
               domain: ".vercel.app",
