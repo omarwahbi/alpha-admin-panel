@@ -45,7 +45,7 @@ export const login = (req, res) => {
               httpOnly: true,
               secure: true,
               sameSite: "none",
-              domain: "alpha-admin-panel-front.vercel.app",
+              domain: ".vercel.app",
             })
             .status(200)
             .json(others);
