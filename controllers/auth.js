@@ -45,7 +45,6 @@ export const login = (req, res) => {
               httpOnly: false,
               secure: true,
               sameSite: "none",
-              domain: ".vercel.app",
             })
             .status(200)
             .json(others);
