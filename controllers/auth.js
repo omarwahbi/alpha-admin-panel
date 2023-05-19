@@ -39,10 +39,10 @@ export const login = (req, res) => {
           const date = new Date();
           const expiresDate = date.setHours(date.getHours() + 12);
 
-          const expiresIn = `${expiresDate}h`;
+          const exp = `${expiresDate}h`;
 
           const token = jwt.sign(data[0].ID, secret, {
-            expiresIn,
+            exp,
           });
           res.status(200).send({ token });
         } else {
