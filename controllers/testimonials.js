@@ -18,12 +18,11 @@ export const getTestimonial = (req, res) => {
 };
 
 export const addTestimonial = (req, res) => {
-  const auth = req.cookies.access_token;
-  const token = auth.split(" ")[1];
+  const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, (err, userInfo) => {
-    if (err) return res.status(403).json(token);
+    if (err) return res.status(403).json(err);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
     db.query(q, [req.body.company_name, req.body.text], (err, data) => {
