@@ -18,21 +18,18 @@ export const getTestimonial = (req, res) => {
 };
 
 export const addTestimonial = (req, res) => {
-  app.use((req, res, next) => {
-    const bearerToken = req.headers["x-vercel-proxy-signature"];
-    if (bearerToken) {
-      const token = bearerToken.split(" ")[1]; // Assuming the value is in the format "Bearer <token>"
-      // Now you can use the `token` variable to process or validate the token
-      // For example, you can decode and verify the token using the jsonwebtoken library
-      // or perform any other authentication/authorization logic.
-      // You can also attach the token to the request object for later use in route handlers.
-      req.token = token;
-    }
-    next();
-  });
-  if (!bearerToken) return res.status(401).json("not auth");
+  const bearerToken = req.headers["x-vercel-proxy-signature"];
+  if (bearerToken) {
+    const token = bearerToken.split(" ")[1]; // Assuming the value is in the format "Bearer <token>"
+    // Now you can use the `token` variable to process or validate the token
+    // For example, you can decode and verify the token using the jsonwebtoken library
+    // or perform any other authentication/authorization logic.
+    // You can also attach the token to the request object for later use in route handlers.
+    req.token = token;
+    if (!bearerToken) return res.status(401).json("not auth");
+  }
 
-  jwt.verify(bearerToken, secret, (err, userInfo) => {
+  jwt.verify(req.token, secret, (err, userInfo) => {
     if (err) return res.status(403).json(err);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
