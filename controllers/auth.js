@@ -20,6 +20,7 @@ const secret = process.env.MY_SECRET;
 //     return res.json("user just added");
 //   });
 // };
+
 export const login = (req, res) => {
   const q = "SELECT * FROM users WHERE username = ?";
   db.query(q, [req.body.username], (err, data) => {
@@ -39,9 +40,15 @@ export const login = (req, res) => {
           const exp = iat + 3600; // seconds
           const token = jwt.sign({ id: data[0].ID, exp }, secret, {});
           const { password_hash, ...others } = data[0];
-          const cookieHeader = `access_token=${token}; HttpOnly; Secure; SameSite=None; Domain=.vercel.app; Path=/`;
-          res.set("Set-Cookie", cookieHeader);
-          res.status(200).json(others);
+          res
+            .cookie("access_token", token, {
+              httpOnly: true,
+              secure: true,
+              sameSite: "none",
+              // domain: ".vercel.app",
+            })
+            .status(200)
+            .json(others);
         } else {
           return res.status(400).json("Forgot the password or something?");
         }
@@ -49,7 +56,6 @@ export const login = (req, res) => {
     }
   });
 };
-
 export const logout = (req, res) => {
   res
     .clearCookie("access_token", { sameSite: "none", secure: true })
