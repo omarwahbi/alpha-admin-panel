@@ -46,7 +46,7 @@ export const login = (req, res) => {
             secret,
             { expiresIn: "1h" }
           );
-          res.status(200).send({ token: token });
+          res.status(200).send({ token });
         } else {
           return res.status(400).json("Forgot the password or something?");
         }
