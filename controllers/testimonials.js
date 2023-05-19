@@ -23,7 +23,8 @@ export const addTestimonial = (req, res) => {
 
   jwt.verify(token, secret, { ignoreExpiration: true }, (err, userInfo) => {
     const error = { token, secret };
-    if (err) return res.status(403).json(error);
+    const expiredAt = jwt.decode(token).exp;
+    if (err) return res.status(403).json(expiredAt);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
     db.query(q, [req.body.company_name, req.body.text], (err, data) => {
