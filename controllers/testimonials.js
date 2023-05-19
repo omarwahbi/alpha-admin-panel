@@ -21,7 +21,7 @@ export const addTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 
-  jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
+  jwt.verify(token, secret, { ignoreExpiration: true }, (err, userInfo) => {
     const error = { token, secret };
     if (err) return res.status(403).json(error);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
