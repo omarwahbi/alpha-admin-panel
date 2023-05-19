@@ -40,15 +40,7 @@ export const login = (req, res) => {
           const exp = iat + 3600; // seconds
           const token = jwt.sign({ id: data[0].ID, exp }, secret, {});
           const { password_hash, ...others } = data[0];
-          res
-            .cookie("access_token", token, {
-              httpOnly: true,
-              secure: true,
-              sameSite: "none",
-              // domain: ".vercel.app",
-            })
-            .status(200)
-            .json(others);
+          res.status(200).json(token);
         } else {
           return res.status(400).json("Forgot the password or something?");
         }
