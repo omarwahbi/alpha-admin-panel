@@ -21,11 +21,8 @@ export const addTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 
-  jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
-    const error = { token, secret };
-    const decodedToken = jwt.decode(token);
-    const expiredAt = new Date(decodedToken.exp * 1000).toISOString(); // Convert expiration time to ISO string
-    if (err) return res.status(403).json(expiredAt);
+  jwt.verify(token, secret, (err, userInfo) => {
+    if (err) return res.status(403).json(err);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
     db.query(q, [req.body.company_name, req.body.text], (err, data) => {
