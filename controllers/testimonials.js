@@ -31,7 +31,7 @@ export const addTestimonial = (req, res) => {
   const token = req.headers.authorization;
 
   jwt.verify(token, secret, (err, userInfo) => {
-    if (err) return res.status(403).json(req.headers);
+    if (err) return res.status(403).json(err);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
     db.query(q, [req.body.company_name, req.body.text], (err, data) => {
