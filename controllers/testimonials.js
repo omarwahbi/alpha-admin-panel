@@ -18,7 +18,7 @@ export const getTestimonial = (req, res) => {
 };
 
 export const addTestimonial = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.cookies.access_token.token;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, (err, userInfo) => {
