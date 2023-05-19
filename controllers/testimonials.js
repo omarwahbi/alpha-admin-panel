@@ -28,10 +28,10 @@ export const addTestimonial = (req, res) => {
   //   req.token = token;
   //   if (!bearerToken) return res.status(401).json("not auth");
   // }
-  const token = req.headers.Authorization;
+  const token = req.headers.authorization;
 
   jwt.verify(token, secret, (err, userInfo) => {
-    if (err) return res.status(403).json(req.headders);
+    if (err) return res.status(403).json(req.headers);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
     db.query(q, [req.body.company_name, req.body.text], (err, data) => {
