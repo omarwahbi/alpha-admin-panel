@@ -21,7 +21,7 @@ export const addTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 
-  jwt.verify(token, secret, { ignoreExpiration: true }, (err, userInfo) => {
+  jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
     const error = { token, secret };
     const expiredAt = jwt.decode(token).exp;
     if (err) return res.status(403).json(expiredAt);
