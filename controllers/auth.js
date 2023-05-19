@@ -36,11 +36,9 @@ export const login = (req, res) => {
           data[0].password_hash
         );
         if (passCheck) {
-          const date = new Date();
-          const expiresDate = date.setHours(date.getHours() + 12);
-
-          const exp = `${expiresDate}h`;
-
+          // const date = new Date();
+          // const expiresDate = date.setHours(date.getHours() + 12);
+          // const exp = `${expiresDate}h`;
           const token = jwt.sign(
             {
               data: data[0].ID,
