@@ -41,9 +41,13 @@ export const login = (req, res) => {
 
           const exp = `${expiresDate}h`;
 
-          const token = jwt.sign(data[0].ID, secret, {
-            exp,
-          });
+          const token = jwt.sign(
+            {
+              data: data[0].ID,
+            },
+            secret,
+            { expiresIn: "1h" }
+          );
           res.status(200).send({ token });
         } else {
           return res.status(400).json("Forgot the password or something?");
