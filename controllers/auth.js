@@ -36,10 +36,9 @@ export const login = (req, res) => {
           data[0].password_hash
         );
         if (passCheck) {
-          const iat = Math.floor(Date.now() / 1000);
+          const iat = Math.floor(Date.now());
           const exp = iat + 3600; // seconds
           const token = jwt.sign({ id: data[0].ID, exp }, secret, {});
-          const { password_hash, ...others } = data[0];
           res.status(200).send({ token });
         } else {
           return res.status(400).json("Forgot the password or something?");
