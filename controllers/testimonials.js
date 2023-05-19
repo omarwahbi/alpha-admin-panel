@@ -23,7 +23,8 @@ export const addTestimonial = (req, res) => {
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
     const error = { token, secret };
-    const expiredAt = jwt.decode(token).exp;
+    const decodedToken = jwt.decode(token);
+    const expiredAt = new Date(decodedToken.exp * 1000).toISOString(); // Convert expiration time to ISO string
     if (err) return res.status(403).json(expiredAt);
     const q = "INSERT INTO testimonials (`company_name`, `text`) VALUES (?,?)";
 
