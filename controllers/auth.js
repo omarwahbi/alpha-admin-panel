@@ -41,7 +41,7 @@ export const login = (req, res) => {
 
           const expiresIn = `${expiresDate}h`;
 
-          const token = jwt.sign(data, secret, {
+          const token = jwt.sign(data[0].ID, secret, {
             expiresIn,
           });
           res.status(200).send({ token });
