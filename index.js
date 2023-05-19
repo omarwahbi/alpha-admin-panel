@@ -16,7 +16,10 @@ const app = express();
 // cors middleware
 app.use(
   cors({
-    origin: "https://alpha-admin-panel-front.vercel.app",
+    origin: [
+      "https://alpha-admin-panel-front.vercel.app",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
