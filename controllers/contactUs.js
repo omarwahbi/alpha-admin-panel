@@ -18,7 +18,7 @@ export const getForm = (req, res) => {
 };
 
 export const addForm = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -34,7 +34,7 @@ export const addForm = (req, res) => {
 };
 
 export const deleteForm = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {

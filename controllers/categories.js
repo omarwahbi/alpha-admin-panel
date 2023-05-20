@@ -18,7 +18,7 @@ export const getCategory = (req, res) => {
 };
 
 export const addCategory = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, (err, userInfo) => {
@@ -32,7 +32,7 @@ export const addCategory = (req, res) => {
 };
 
 export const deleteCategory = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, (err, userInfo) => {
@@ -45,7 +45,7 @@ export const deleteCategory = (req, res) => {
   });
 };
 export const editCategory = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, (err, userInfo) => {

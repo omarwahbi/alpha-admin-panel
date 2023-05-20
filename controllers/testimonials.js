@@ -42,7 +42,7 @@ export const addTestimonial = (req, res) => {
 };
 
 export const deleteTestimonial = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -55,7 +55,7 @@ export const deleteTestimonial = (req, res) => {
   });
 };
 export const editTestimonial = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {

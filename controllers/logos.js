@@ -18,7 +18,7 @@ export const getLogo = (req, res) => {
 };
 
 export const addLogo = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -34,7 +34,7 @@ export const addLogo = (req, res) => {
 };
 
 export const deleteLogo = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -47,7 +47,7 @@ export const deleteLogo = (req, res) => {
   });
 };
 export const editLogo = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {

@@ -45,7 +45,7 @@ export const getProject = (req, res) => {
 };
 
 export const addProject = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -112,7 +112,7 @@ export const addProject = (req, res) => {
   });
 };
 export const deleteProject = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, userInfo) => {
@@ -126,7 +126,7 @@ export const deleteProject = (req, res) => {
 };
 
 export const editProject = (req, res) => {
-  const token = req.cookies.access_token;
+  const token = req.headers.authorization;
 
   if (!token) {
     return res.status(401).json("Not authenticated!");
